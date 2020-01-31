@@ -1,6 +1,4 @@
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -25,6 +23,12 @@ public class MainClass {
 
        System.out.println(driver.getTitle());
        System.out.println(driver.getCurrentUrl());
+
+        //WebElement link = driver.findElement(By.linkText("ссылка"));
+        //System.out.println(link);
+        //WebElement link2 = driver.findElement(By.partialLinkText("Часть ссылки"));
+        WebElement name = driver.findElement(By.name("Login"));
+        System.out.println(name);
        driver.quit();
 
 
