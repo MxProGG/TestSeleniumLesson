@@ -24,11 +24,24 @@ public class MainClass {
        System.out.println(driver.getTitle());
        System.out.println(driver.getCurrentUrl());
 
-        //WebElement link = driver.findElement(By.linkText("ссылка"));
+        //WebElement link = driver.findElement(By.linkText("текст в ссылке"));
         //System.out.println(link);
-        //WebElement link2 = driver.findElement(By.partialLinkText("Часть ссылки"));
+        //WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
         WebElement name = driver.findElement(By.name("Login"));
         System.out.println(name);
+        WebElement className = driver.findElement(By.className("help"));
+        System.out.println(className);
+        WebElement id = driver.findElement(By.id("loginBtn"));
+        System.out.println(id);
+        WebElement tag = driver.findElement(By.tagName("head"));
+        System.out.println(tag);
+        WebElement elementcss = driver.findElement(By.cssSelector("input#Remember"));
+        System.out.println(elementcss);
+        WebElement elementXpath = driver.findElement(By.xpath("//div//img[@class='main-logo-img']"));
+        System.out.println(elementXpath);
+
+
+
        driver.quit();
 
 
