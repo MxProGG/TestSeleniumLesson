@@ -29,6 +29,13 @@ public class Home {
         System.out.println(table.getValueFromCell(2,3));
         System.out.println(table.getValueFromCell(4, "Company"));
 
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("alert('Hello Word!');");
+        try{
+        Thread.sleep(3000);}
+        catch (Exception e){e.printStackTrace();}
+        driver.switchTo().alert().accept();
+
 
 
     }
