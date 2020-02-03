@@ -7,7 +7,10 @@ public class MainClass {
    static WebDriver driver;
 
     public static void main(String[] args) {
-       System.setProperty("webdriver.chrome.driver", "D:\\java_project\\java_lesson_selenium\\drives\\chromedriver.exe");
+
+        Home.HomeTest();
+
+      /* System.setProperty("webdriver.chrome.driver", "D:\\java_project\\java_lesson_selenium\\drives\\chromedriver.exe");
         driver = new ChromeDriver();
         //WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -25,7 +28,7 @@ public class MainClass {
        System.out.println(driver.getTitle());
        System.out.println(driver.getCurrentUrl());
 
-        /*WebElement link = driver.findElement(By.linkText("текст в ссылке"));
+        *//*WebElement link = driver.findElement(By.linkText("текст в ссылке"));
         System.out.println(link);
         WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
         WebElement name = driver.findElement(By.name("Login"));
@@ -39,7 +42,7 @@ public class MainClass {
         WebElement elementcss = driver.findElement(By.cssSelector("input#Remember"));
         System.out.println(elementcss);
         WebElement elementXpath = driver.findElement(By.xpath("//div//img[@class='main-logo-img']"));
-        System.out.println(elementXpath);*/
+        System.out.println(elementXpath);*//*
 
         WebElement logoName = driver.findElement(By.xpath("//div[@class='main-login-main']//div[3]"));
 
@@ -100,6 +103,6 @@ public class MainClass {
         String chXpath = "//*[@class='info_area' and text()='%s']//..//input[@type='checkbox']";
 
         if (driver.findElement(By.xpath(String.format(chXpath, name))).isSelected()){
-            driver.findElement(By.xpath(String.format(chXpath, name))).click();}
+            driver.findElement(By.xpath(String.format(chXpath, name))).click();}*/
     }
 }
