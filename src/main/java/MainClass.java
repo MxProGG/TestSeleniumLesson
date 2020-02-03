@@ -4,11 +4,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
+   static WebDriver driver;
 
     public static void main(String[] args) {
        System.setProperty("webdriver.chrome.driver", "D:\\java_project\\java_lesson_selenium\\drives\\chromedriver.exe");
-
-       WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+        //WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
        //Чтоб окно браузера запускалось на втором мониторе
        driver.manage().window().setPosition(new Point(1930,60));
@@ -24,9 +25,9 @@ public class MainClass {
        System.out.println(driver.getTitle());
        System.out.println(driver.getCurrentUrl());
 
-        //WebElement link = driver.findElement(By.linkText("текст в ссылке"));
-        //System.out.println(link);
-        //WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
+        /*WebElement link = driver.findElement(By.linkText("текст в ссылке"));
+        System.out.println(link);
+        WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
         WebElement name = driver.findElement(By.name("Login"));
         System.out.println(name);
         WebElement className = driver.findElement(By.className("help"));
@@ -38,13 +39,75 @@ public class MainClass {
         WebElement elementcss = driver.findElement(By.cssSelector("input#Remember"));
         System.out.println(elementcss);
         WebElement elementXpath = driver.findElement(By.xpath("//div//img[@class='main-logo-img']"));
-        System.out.println(elementXpath);
+        System.out.println(elementXpath);*/
+
+        WebElement logoName = driver.findElement(By.xpath("//div[@class='main-login-main']//div[3]"));
+
+        System.out.println("_____________________");
+        if (logoName.getText().equals("TrustMed")){
+            System.out.println("PASSED!");
+        }else{
+            System.out.println("FAIL!");
+        }
+        System.out.println("_____________________");
+
+        System.out.println("logoName is " + logoName.getText());
+
+        WebElement login = driver.findElement(By.xpath("//input[@id='Login']"));
+        login.sendKeys("admin");
+        WebElement password = driver.findElement(By.xpath("//input[@id='Password']"));
+        password.sendKeys("11");
+        driver.findElement(By.xpath("//input[@id='loginBtn']")).click();
+
+        WebElement linkShedule = driver.findElement(By.xpath("//div[@id='Portlet_2']//a[@href='/mis/test2/Schedule']"));
+        System.out.println("link is " + linkShedule.getText());
+        linkShedule.click();
+
+        driver.findElement(By.xpath("//a[@id='search_type_all-button']")).click();
+        driver.findElement(By.xpath("//ul[@id='search_type_all-menu']//li[4]/a")).click();
+        driver.findElement(By.xpath("//button[@id='btncanceldepgrid1']//*[@class='ui-button-text']")).click();
+        WebElement tableDep = driver.findElement(By.xpath("//*[@id=\"depgrid1\"]"));
+
+        WebElement searchDoc = driver.findElement(By.xpath("//input[@id='sinpdocprvdgrid1']"));
+        searchDoc.sendKeys("TestDoc");
+        System.out.println("searchDoc is " + searchDoc.getAttribute("value"));
+        searchDoc.clear();
+
+        driver.findElement(By.xpath("//a[@class='settBtn']/span[1]")).click();
+        //System.out.println(driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected());
+        Select sel = new Select(driver);
+        sel.selectCheckbox("Запрещено видеть данные других подразделений");
+        //selectCheckbox("Запрещено видеть данные других подразделений");
+        //driver.findElement(By.xpath("//*[@class='info_area' and text()='Проверка полисов других регионов по РЗ']//..//input[@type='checkbox']")).click();
+        selectCheckbox("Автоматическая печать");
+        selectCheckbox("Проверка полисов других регионов по РЗ");
+        /*if (!driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected()){
+        driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).click();}
+
+        System.out.println(driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected());*/
 
 
 
-       driver.quit();
+
+      //driver.quit();
+
 
 
     }
 
+    public static void selectCheckbox(String name){
+
+        String chXpath = "//*[@class='info_area' and text()='%s']//..//input[@type='checkbox']";
+
+        if (!driver.findElement(By.xpath(String.format(chXpath, name))).isSelected()){
+            driver.findElement(By.xpath(String.format(chXpath, name))).click();}
+    }
+
+    public static void deselectCheckbox(String name){
+
+        String chXpath = "//*[@class='info_area' and text()='%s']//..//input[@type='checkbox']";
+
+        if (driver.findElement(By.xpath(String.format(chXpath, name))).isSelected()){
+            driver.findElement(By.xpath(String.format(chXpath, name))).click();}
+    }
 }
