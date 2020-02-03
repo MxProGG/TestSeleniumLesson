@@ -74,20 +74,12 @@ public class MainClass {
         searchDoc.clear();
 
         driver.findElement(By.xpath("//a[@class='settBtn']/span[1]")).click();
-        //System.out.println(driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected());
-        Select sel = new Select(driver);
-        sel.selectCheckbox("Запрещено видеть данные других подразделений");
-        //selectCheckbox("Запрещено видеть данные других подразделений");
-        //driver.findElement(By.xpath("//*[@class='info_area' and text()='Проверка полисов других регионов по РЗ']//..//input[@type='checkbox']")).click();
+
+        Select.selectCheckbox("Запрещено видеть данные других подразделений", driver);
+
         selectCheckbox("Автоматическая печать");
+        Select.deselectCheckbox("Автоматическая печать", driver);
         selectCheckbox("Проверка полисов других регионов по РЗ");
-        /*if (!driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected()){
-        driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).click();}
-
-        System.out.println(driver.findElement(By.xpath("//div[@data-setname='Разделение врачей по ЛПУ']//div[@class='value_area']//input[@type='checkbox']")).isSelected());*/
-
-
-
 
       //driver.quit();
 
