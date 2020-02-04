@@ -1,9 +1,11 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
@@ -88,13 +90,18 @@ public class MainClass {
         System.out.println("searchDoc is " + searchDoc.getAttribute("value"));
         searchDoc.clear();
 
-        driver.findElement(By.xpath("//a[@class='settBtn']/span[1]")).click();
+       WebElement move =  driver.findElement(By.xpath("//tr[@id='1642']//td//*"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(move).build().perform();
+
+
+       /* driver.findElement(By.xpath("//a[@class='settBtn']/span[1]")).click();
 
         Select.selectCheckbox("Запрещено видеть данные других подразделений", driver);
 
         selectCheckbox("Автоматическая печать");
         Select.deselectCheckbox("Автоматическая печать", driver);
-        selectCheckbox("Проверка полисов других регионов по РЗ");
+        selectCheckbox("Проверка полисов других регионов по РЗ");*/
 
       //driver.quit();
 
