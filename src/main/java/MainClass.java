@@ -1,16 +1,19 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
    static WebDriver driver;
-
+   static WebDriverWait wait;
     public static void main(String[] args) {
 
-        Home.HomeTest();
+        //Home.HomeTest();
 
-      /* System.setProperty("webdriver.chrome.driver", "D:\\java_project\\java_lesson_selenium\\drives\\chromedriver.exe");
+       System.setProperty("webdriver.chrome.driver", "D:\\java_project\\java_lesson_selenium\\drives\\chromedriver.exe");
         driver = new ChromeDriver();
         //WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -20,6 +23,11 @@ public class MainClass {
        //driver.manage().window().setSize(new Dimension(1600,1000));
 
        driver.get("http://192.168.7.54/mis/test2/");
+
+        wait =(new WebDriverWait(driver, 5));
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='main-title' and text()='Вход в систему']")));
+
 //       driver.navigate().to("http://192.168.7.54/test/");
 //       driver.navigate().back();
 //       driver.navigate().forward();
@@ -28,21 +36,21 @@ public class MainClass {
        System.out.println(driver.getTitle());
        System.out.println(driver.getCurrentUrl());
 
-        *//*WebElement link = driver.findElement(By.linkText("текст в ссылке"));
-        System.out.println(link);
-        WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
-        WebElement name = driver.findElement(By.name("Login"));
-        System.out.println(name);
-        WebElement className = driver.findElement(By.className("help"));
-        System.out.println(className);
-        WebElement id = driver.findElement(By.id("loginBtn"));
-        System.out.println(id);
-        WebElement tag = driver.findElement(By.tagName("head"));
-        System.out.println(tag);
-        WebElement elementcss = driver.findElement(By.cssSelector("input#Remember"));
-        System.out.println(elementcss);
-        WebElement elementXpath = driver.findElement(By.xpath("//div//img[@class='main-logo-img']"));
-        System.out.println(elementXpath);*//*
+//        WebElement link = driver.findElement(By.linkText("текст в ссылке"));
+//        System.out.println(link);
+//        WebElement linkPartial = driver.findElement(By.partialLinkText("Часть текста в ссылке"));
+//        WebElement name = driver.findElement(By.name("Login"));
+//        System.out.println(name);
+//        WebElement className = driver.findElement(By.className("help"));
+//        System.out.println(className);
+//        WebElement id = driver.findElement(By.id("loginBtn"));
+//        System.out.println(id);
+//        WebElement tag = driver.findElement(By.tagName("head"));
+//        System.out.println(tag);
+//        WebElement elementcss = driver.findElement(By.cssSelector("input#Remember"));
+//        System.out.println(elementcss);
+//        WebElement elementXpath = driver.findElement(By.xpath("//div//img[@class='main-logo-img']"));
+//        System.out.println(elementXpath);
 
         WebElement logoName = driver.findElement(By.xpath("//div[@class='main-login-main']//div[3]"));
 
@@ -67,7 +75,11 @@ public class MainClass {
         linkShedule.click();
 
         driver.findElement(By.xpath("//a[@id='search_type_all-button']")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='search_type_all-menu']//li[4]/a")));
+
         driver.findElement(By.xpath("//ul[@id='search_type_all-menu']//li[4]/a")).click();
+        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='search_type_all-menu']//li[4]/a")));
+
         driver.findElement(By.xpath("//button[@id='btncanceldepgrid1']//*[@class='ui-button-text']")).click();
         WebElement tableDep = driver.findElement(By.xpath("//*[@id=\"depgrid1\"]"));
 
@@ -103,6 +115,6 @@ public class MainClass {
         String chXpath = "//*[@class='info_area' and text()='%s']//..//input[@type='checkbox']";
 
         if (driver.findElement(By.xpath(String.format(chXpath, name))).isSelected()){
-            driver.findElement(By.xpath(String.format(chXpath, name))).click();}*/
+            driver.findElement(By.xpath(String.format(chXpath, name))).click();}
     }
 }
